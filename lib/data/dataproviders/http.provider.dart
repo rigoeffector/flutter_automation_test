@@ -6,7 +6,7 @@ const _defaultReceiveTimeout = Duration.millisecondsPerMinute;
 
 class HttpProvider {
   var http = Dio(BaseOptions(
-      baseUrl: "https://system.velocityhealth.co.za/api/v2/spa",
+      baseUrl: "https://example.com",
       connectTimeout: _defaultConnectTimeout,
       receiveTimeout: _defaultReceiveTimeout,
       headers: {
@@ -87,21 +87,6 @@ class HttpProvider {
           'email': email,
           'new_password': newPassword,
           'new_password_confirmation': confirmPassword,
-        },
-        options: Options(headers: header));
-  }
-
-  Future<dynamic> coReg({String? username, String? otp, String? password, String? cPassword}) async {
-    var header = {
-      'Content-type': 'application/json',
-      'Accept': 'application/json',
-    };
-    return http.post("/register/company",
-        data: {
-          'otp': otp,
-          'email': username,
-          'password': password,
-          "password_confirmation": cPassword
         },
         options: Options(headers: header));
   }

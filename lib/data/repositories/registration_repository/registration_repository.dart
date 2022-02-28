@@ -7,11 +7,7 @@ class RegistrationRepository {
   Future<Response> publicRegister({String? email, String? password, String? cpassword})async{
     return await _httpProvider.reg(username: email, password: password, cpassword: cpassword);
   }
-
-  Future<Response> companyRegister({String? email, String? password, String? cpassword, String? otp})async{
-    return await _httpProvider.coReg(username: email, password: password, cPassword: cpassword, otp: otp);
-  }
-
+  
   Future<Response> activate({String? email, String? code})async{
     return await _httpProvider.activate(username: email, code: code);
   }
