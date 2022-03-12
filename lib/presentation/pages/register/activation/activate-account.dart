@@ -2,7 +2,7 @@ import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class ActivateAccount extends StatefulWidget {
-  const ActivateAccount({ Key? key }) : super(key: key);
+  const ActivateAccount({ Key key }) : super(key: key);
 
   @override
   _ActivateAccountState createState() => _ActivateAccountState();

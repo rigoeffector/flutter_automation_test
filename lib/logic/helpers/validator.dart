@@ -1,7 +1,7 @@
 
 import 'package:the_validator/the_validator.dart';
 
-String? validateEmail(String val) {
+String validateEmail(String val) {
   if (val.isEmpty) {
     return "Email Address cannot be empty";
   } else {
@@ -13,7 +13,7 @@ String? validateEmail(String val) {
   }
 }
 
-String? validateDouble(var val){
+String validateDouble(var val){
   if (val.length == 0) {
     return "Field cannot be empty";
   } else {
@@ -26,35 +26,35 @@ String? validateDouble(var val){
   }
 }
 
-validateDate(DateTime? val) {
+validateDate(DateTime val) {
   if (val == null) {
     return "Date cannot be empty";
   } else {return null;
   }
 }
 
-validateTime(DateTime? val) {
+validateTime(DateTime val) {
   if (val == null) {
     return "Time cannot be empty";
   } else {return null;
   }
 }
 
-String? validateString(String val) {
+String validateString(String val) {
   if (val.isEmpty) {
     return "Field cannot be empty";
   } else {return null;
   }
 }
 
-String? validateMsisdn(String val) {
+String validateMsisdn(String val) {
   if (val.isEmpty) {
     return "Phone number cannot be empty";
   } else {return null;
   }
 }
 
-String? validateCode(String val) {
+String validateCode(String val) {
   if (val.isEmpty) {
     return "Activation code cannot be empty";
   } else {
@@ -69,7 +69,7 @@ String? validateCode(String val) {
   }
 }
 
-String? validateOTP(String val) {
+String validateOTP(String val) {
   if (val.isEmpty) {
     return "OTP code cannot be empty";
   } if (Validator.isNumber(val)) {
@@ -84,7 +84,7 @@ String? validateOTP(String val) {
 
 }
 
-String? confirmPassword(String first, second) {
+String confirmPassword(String first, second) {
   if (Validator.isEqualTo(first, second)) {
     return null;
   } else {
@@ -92,7 +92,7 @@ String? confirmPassword(String first, second) {
   }
 }
 
-String? validatePassword(String val) {
+String validatePassword(String val) {
   final _passwordRegExp = RegExp(
       r'^[A-Za-z\d@$!%*?&]{8,}$'
   );
@@ -103,7 +103,7 @@ String? validatePassword(String val) {
         : "Invalid password. Password should be atleast 8 characters with atleast 1 uppercase letter, numbers and special characters.";
 }
 
-String? validateConfirmPassword(String val, String text) {
+String validateConfirmPassword(String val, String text) {
   if (val != text) {
     return "Passwords do not match";
   } 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ForgotPasswordChange extends StatefulWidget {
-  const ForgotPasswordChange({Key? key}) : super(key: key);
+  const ForgotPasswordChange({Key key}) : super(key: key);
 
   @override
   _ForgotPasswordChangeState createState() => _ForgotPasswordChangeState();

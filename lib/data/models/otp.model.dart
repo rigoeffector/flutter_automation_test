@@ -1,9 +1,9 @@
 import 'client.model.dart';
 
 class RegOTP {
-  int? id;
-  Client?  company;
-  final String? email, otp, expire, status, created, updated;
+  int id;
+  Client  company;
+  final String email, otp, expire, status, created, updated;
 
   RegOTP({
     this.id,

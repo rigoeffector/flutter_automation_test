@@ -1,6 +1,6 @@
 class Client {
-  int? id;
-  String? name, logo, email, msisdn, deletedat,status, createdat, updatedat;
+  int id;
+  String name, logo, email, msisdn, deletedat,status, createdat, updatedat;
 
   Client({
     this.id,

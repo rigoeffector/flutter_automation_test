@@ -5,7 +5,7 @@ import 'package:bloc_login/logic/blocs/auth/bloc/auth_state.dart';
 import 'package:bloc_login/logic/helpers/validator.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({Key key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
@@ -21,7 +21,8 @@ class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
   bool obscureText = true;
-  late String device;
+
+  // late String device;
 
   @override
   void dispose() {
@@ -79,7 +80,7 @@ class _LoginState extends State<Login> {
                         listener: (context, state) {
                           if (state is AuthDenied) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(state.errors![0]),
+                              content: Text(state.errors[0]),
                               duration: const Duration(milliseconds: 300),
                             ));
                           }
@@ -97,7 +98,7 @@ class _LoginState extends State<Login> {
                                         color: Colors.white,
                                         fontFamily: 'UniNeue',
                                         fontSize: 18),
-                                    validator: (val) => validateEmail(val!),
+                                    validator: (val) => validateEmail(val),
                                     controller: emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     decoration: const InputDecoration(
@@ -135,7 +136,7 @@ class _LoginState extends State<Login> {
                                         color: Colors.white,
                                         fontFamily: 'UniNeue',
                                         fontSize: 18),
-                                    validator: (val) => validatePassword(val!),
+                                    validator: (val) => validatePassword(val),
                                     obscureText: obscureText,
                                     controller: pwdController,
                                     keyboardType: TextInputType.text,
@@ -300,7 +301,7 @@ class _LoginState extends State<Login> {
   }
 
   bool validateForm() {
-    if (_loginForm.currentState!.validate()) {
+    if (_loginForm.currentState.validate()) {
       _loginForm.currentState?.save();
       return true;
     } else {

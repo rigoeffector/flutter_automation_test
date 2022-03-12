@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ProfileImage extends StatelessWidget {
-  final double? height, width;
-  final Color? color;
-  final String? image;
+  final double height, width;
+  final Color color;
+  final String image;
   const ProfileImage(
-      {Key? key, @required this. image, this.height = 100.0, this.width = 100.0, this.color = Colors.white,}) : super(key: key);
+      {Key key, @required this. image, this.height = 100.0, this.width = 100.0, this.color = Colors.white,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,11 +15,11 @@ class ProfileImage extends StatelessWidget {
         shape: BoxShape.circle,
         color: Colors.white,
         image: DecorationImage(
-          image: NetworkImage('https://system.velocityhealth.co.za'+ image!,),
+          image: NetworkImage('https://system.velocityhealth.co.za'+ image),
           fit: BoxFit.contain,
         ),
         border: Border.all(
-          color: color!,
+          color: color,
           width: 3.0,
         ),
       ),

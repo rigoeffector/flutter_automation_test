@@ -10,17 +10,17 @@ abstract class AuthState extends Equatable {
 
 class AuthInitial extends AuthState {
   @override
-  List<Object?> get props =>[];
+  List<Object> get props =>[];
 }
 
 class AuthLoading extends AuthState {
   @override
-  List<Object?> get props => [];
+  List<Object> get props => [];
 }
 
 class AuthGranted extends AuthState {
-  final String? token;
-  final User? user;
+  final String token;
+  final User user;
   AuthGranted(this.token, this.user): super([token, user]);
 
   Map<String, dynamic> toMap() {
@@ -42,13 +42,13 @@ class AuthGranted extends AuthState {
   factory AuthGranted.fromJson(String source) => AuthGranted.fromMap(json.decode(source));
 
   @override
-  List<Object?> get props => [token, user];
+  List<Object> get props => [token, user];
 }
 
 class AuthDenied extends AuthState {
-  final List<String>? errors;
+  final List<String> errors;
   const AuthDenied(this.errors);
 
   @override
-  List<Object?> get props => [errors];
+  List<Object> get props => [errors];
 }

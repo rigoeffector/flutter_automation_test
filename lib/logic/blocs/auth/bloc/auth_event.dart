@@ -7,6 +7,9 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
+// this state ensures that the previous state is fetched when application starts
+class AuthInit extends AuthEvent {}
+
 class AuthLoginRequested extends AuthEvent {
   const AuthLoginRequested(this.email, this.password, this.device);
   final String email;
@@ -21,7 +24,7 @@ class AuthRefreshRequested extends AuthEvent {
   const AuthRefreshRequested(this.token, this.device, this.user);
   final String token;
   final String device;
-  final User? user;
+  final User user;
 
   @override
   List<Object> get props => [token, device, user != null];
@@ -38,7 +41,7 @@ class AuthLogoutRequested extends AuthEvent {
 class Authenticated extends AuthEvent {
   const Authenticated(this.token, this.user);
   final String token;
-  final User? user;
+  final User user;
 
   @override
   List<Object> get props => [token, user != null];

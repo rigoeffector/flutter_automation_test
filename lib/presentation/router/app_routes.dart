@@ -8,7 +8,7 @@ import 'package:bloc_login/presentation/pages/register/register_public.dart';
 import 'package:bloc_login/presentation/pages/welcome.dart';
 
 class AppRouter {
-  Route? onGenerateRoute(RouteSettings settings) {
+  Route onGenerateRoute(RouteSettings settings) {
     // final GlobalKey<ScaffoldState>? key = settings.arguments as GlobalKey<ScaffoldState>?;
     switch (settings.name) {
       case '/':

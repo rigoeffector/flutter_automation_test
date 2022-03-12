@@ -7,8 +7,8 @@ String companyToJson(List<Company> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Company {
-  int? id;
-  String? name,status,logo;
+  int id;
+  String name,status,logo;
   Company({
     this.id,
     this.name,

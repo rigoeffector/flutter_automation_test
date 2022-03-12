@@ -15,16 +15,16 @@ class HttpProvider {
       },
       contentType: Headers.jsonContentType));
 
-  Response? response;
+  Response response;
 
   // ignore: non_constant_identifier_names
-  Future<dynamic> otp_check({String? code}) async {
+  Future<dynamic> otp_check({String code}) async {
     return await http.post('/otp/check',
         data: {'otp_code': code},
         options: Options(responseType: ResponseType.json));
   }
 
-  Future<dynamic> auth({String? username, password, device}) async {
+  Future<dynamic> auth({String username, password, device}) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -35,7 +35,7 @@ class HttpProvider {
         options: Options(headers: header));
   }
 
-  Future<dynamic> reg({String? username, String? password, cpassword}) async {
+  Future<dynamic> reg({String username, String password, cpassword}) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -49,7 +49,7 @@ class HttpProvider {
         options: Options(headers: header));
   }
 
-  Future<dynamic> fgtRequest(String? email) async {
+  Future<dynamic> fgtRequest(String email) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -62,7 +62,7 @@ class HttpProvider {
         options: Options(headers: header));
   }
 
-  Future<dynamic> fgtVerifyCode(String? email, code) async {
+  Future<dynamic> fgtVerifyCode(String email, code) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -76,7 +76,7 @@ class HttpProvider {
   }
 
   Future<dynamic> fgtResetPwd(
-      String? email, String? newPassword, String? confirmPassword, code) async {
+      String email, String newPassword, String confirmPassword, code) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -91,7 +91,7 @@ class HttpProvider {
         options: Options(headers: header));
   }
 
-  Future<dynamic> activate({String? username, String? code}) async {
+  Future<dynamic> activate({String username, String code}) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -104,7 +104,7 @@ class HttpProvider {
         options: Options(headers: header));
   }
 
-  Future<dynamic> getcode({String? username}) async {
+  Future<dynamic> getcode({String username}) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -116,7 +116,7 @@ class HttpProvider {
         options: Options(headers: header));
   }
 
-  Future<dynamic> logout({String? token}) async {
+  Future<dynamic> logout({String token}) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -127,7 +127,7 @@ class HttpProvider {
   }
 
   Future<dynamic> changepassword(
-      {String? password, newpassword, confirmpassword, token}) async {
+      {String password, newpassword, confirmpassword, token}) async {
     var header = {
       'Content-type': 'application/json',
       'Accept': 'application/json',

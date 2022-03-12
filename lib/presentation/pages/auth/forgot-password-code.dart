@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ConfirmForgotPasswordCode extends StatefulWidget {
-  const ConfirmForgotPasswordCode({Key? key}) : super(key: key);
+  const ConfirmForgotPasswordCode({Key key}) : super(key: key);
 
   @override
   _ConfirmForgotPasswordCodeState createState() =>

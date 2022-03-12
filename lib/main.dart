@@ -24,23 +24,25 @@ void main() async {
   );
 }
 
-
 class App extends StatelessWidget {
-  const App({
-    Key? key,
-    required this.authenticationRepository,
-  }) : super(key: key);
-
   final AuthenticationRepository authenticationRepository;
+
+  const App({
+    Key key,
+    this.authenticationRepository,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: authenticationRepository,
+      // initialize auth bloc with the *AuthInit* event which fetches previous state
       child: BlocProvider(
-        create: (_) => AuthBloc(
-          authenticationRepository: authenticationRepository,
-        ),
+        create: (context) {
+          return AuthBloc(
+            authenticationRepository: authenticationRepository,
+          )..add(AuthInit());
+        },
         child: BlocApp(),
       ),
     );
@@ -48,11 +50,12 @@ class App extends StatelessWidget {
 }
 
 class BlocApp extends StatelessWidget {
-  BlocApp({Key? key}) : super(key: key);
+  BlocApp({Key key}) : super(key: key);
 
   final AppRouter _appRouter = AppRouter();
   final _navigatorKey = GlobalKey<NavigatorState>();
-  NavigatorState get _navigator => _navigatorKey.currentState!;
+
+  NavigatorState get _navigator => _navigatorKey.currentState;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +84,7 @@ class BlocApp extends StatelessWidget {
 
             if (state is AuthGranted) {
               _navigator.pushNamedAndRemoveUntil("/home", (route) => false);
-            } else if(state is AuthInitial) {
+            } else if (state is AuthInitial) {
               _navigator.pushNamedAndRemoveUntil("/", (route) => false);
             }
           },

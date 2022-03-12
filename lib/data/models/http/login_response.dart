@@ -13,10 +13,10 @@ class LoginResponse {
         this.token,
     });
 
-    bool? success;
-    String? message;
-    User? user;
-    String? token;
+    bool success;
+    String message;
+    User user;
+    String token;
 
     factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
         success: json["success"],

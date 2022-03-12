@@ -12,7 +12,9 @@ import 'auth_state.dart';
 part 'auth_event.dart';
 
 class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
-  AuthBloc({required AuthenticationRepository authenticationRepository}) : _authenticationRepository = authenticationRepository, super(AuthInitial()) {
+  AuthBloc({AuthenticationRepository authenticationRepository}) : _authenticationRepository = authenticationRepository, super(AuthInitial()) {
+    // handle auth init
+    on<AuthInit>(_onAuthenticationInit);
     on<AuthLogoutRequested>(_onAuthenticationLogoutRequested);
     on<AuthLoginRequested>(_onAuthenticationLoginRequested);
     on<AuthRefreshRequested>(_onAuthenticationLoginRefresh);
@@ -20,6 +22,13 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   }
   
   final AuthenticationRepository _authenticationRepository;
+
+  Future<FutureOr<void>> _onAuthenticationInit(AuthInit event, Emitter<AuthState> emit) async {
+    // check if current state is AuthGranted
+    // if AuthGranted -> preserve state
+    // else emit AuthInitial state
+    emit(state is AuthGranted ?  state : AuthInitial());
+  }
 
   Future<FutureOr<void>> _onAuthenticationLogoutRequested(AuthLogoutRequested event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
@@ -32,7 +41,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   Future<FutureOr<void>> _onAuthenticationLoginRequested(AuthLoginRequested event, Emitter<AuthState> emit) async {
     try{
       emit(AuthLoading());
-      Response? parsed = await _authenticationRepository.logIn(
+      Response parsed = await _authenticationRepository.logIn(
           username: event.email, password: event.password, device: event.device);
       HttpResponse response =
       HttpResponse.fromJson(parsed.data, parsed.statusCode);
@@ -60,7 +69,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   }
 
   @override
-  AuthState? fromJson(Map<String, dynamic> json) {
+  AuthState fromJson(Map<String, dynamic> json) {
     try {
       return AuthGranted.fromMap(json);
     } catch (_) {
@@ -69,7 +78,7 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
   }
 
   @override
-  Map<String, dynamic>? toJson(AuthState state) {
+  Map<String, dynamic> toJson(AuthState state) {
     if(state is AuthGranted){
       return state.toMap();
     }else{
