@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -43,16 +44,99 @@ class AuthBloc extends HydratedBloc<AuthEvent, AuthState> {
       emit(AuthLoading());
       Response parsed = await _authenticationRepository.logIn(
           username: event.email, password: event.password, device: event.device);
+          
       HttpResponse response =
       HttpResponse.fromJson(parsed.data, parsed.statusCode);
-
       if (response.status == 200) {
         LoginResponse loginResponse = LoginResponse.fromJson(response.data);
         emit(AuthGranted(loginResponse.token, loginResponse.user));
       }else{
         emit(const AuthDenied(["Login failed"]));
       }
-    } catch (e) {
+    }on SocketException catch (_) {
+      
+    } on FormatException catch (_) {
+      
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Response res = e.response;
+      if(res == null){
+        if (kDebugMode) {
+          print(e.type);
+        }
+        
+      }else{
+        HttpResponse response = HttpResponse.fromJson(res.data, res.statusCode);
+        switch (e.type) {
+          case DioErrorType.response:
+            if (res.statusCode == 500) {
+              emit(const AuthDenied(["System error"]));
+            }
+
+            else if(res.statusCode == 403){
+              emit(const AuthDenied(["Some Error"]));
+            }
+
+            else if(res.statusCode == 404){
+              print(res.data);
+              emit(const AuthDenied(["Not Found"]));
+            }
+
+            
+            else if(res.statusCode == 401){
+              emit(const AuthDenied(["Invalid login credentials"]));
+              
+            }
+
+            else if (res.statusCode == 422) {
+              if(response.data['error']['message']['email'] != null){
+                emit(const AuthDenied(["Unknown error"]));
+                    // message: response.data['error']['message']['email'][0]));
+              }
+              if(response.data['error']['message']['password'] != null){
+                emit(const AuthDenied(["Unknown error"]));
+                    // message: response.data['error']['message']['password'][0]));
+              }
+              if(response.data['error']['message']['device_name'] != null){
+                emit(const AuthDenied(["Unknown error"]));
+                    // message: response.data['error']['message']['device_name'][0]));
+              }
+            } else {
+              emit(const AuthDenied(["Unknown error"]));
+                  // message: response.data['error']['message']));
+              
+            }
+
+            break;
+          case DioErrorType.sendTimeout:
+            emit(const AuthDenied(["Unknown error"]));
+                // message: 'Timed out. Please check your connection'));
+            break;
+          case DioErrorType.cancel:
+            emit(const AuthDenied(["Unknown error"]));
+                // message: 'Request cancelled'));
+            break;
+
+          case DioErrorType.other:
+            break;
+          case DioErrorType.connectTimeout:
+            emit(const AuthDenied(["Unknown error"]));
+                // message: 'Connection timed out. Please check your data connection'));
+            break;
+
+          case DioErrorType.receiveTimeout:
+            emit(const AuthDenied(["Timed out. Please try again later"]));
+                // message: ''));
+            break;
+
+          default:
+            
+            break;
+        }
+      }
+      } catch (e) {
       if (kDebugMode) {
         print(e);
       }

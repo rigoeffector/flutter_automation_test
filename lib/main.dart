@@ -76,19 +76,19 @@ class BlocApp extends StatelessWidget {
       ),
       navigatorKey: _navigatorKey,
       builder: (context, child) {
-        return BlocListener<AuthBloc, AuthState>(
-          listener: (context, state) {
-            if (kDebugMode) {
-              print(state);
-            }
-
-            if (state is AuthGranted) {
-              _navigator.pushNamedAndRemoveUntil("/home", (route) => false);
-            } else if (state is AuthInitial) {
-              _navigator.pushNamedAndRemoveUntil("/", (route) => false);
-            }
+        return BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            return BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthGranted) {
+                  _navigator.pushNamedAndRemoveUntil("/home", (route) => false);
+                } else if (state is AuthInitial) {
+                  _navigator.pushNamedAndRemoveUntil("/", (route) => false);
+                }
+              },
+              child: child,
+            );
           },
-          child: child,
         );
       },
       onGenerateRoute: _appRouter.onGenerateRoute,
