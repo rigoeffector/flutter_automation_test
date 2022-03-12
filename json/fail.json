@@ -1,0 +1,7 @@
+{
+	"success": false,
+	"error": {
+		"type": "LOGIN_ERROR",
+		"message": "Invalid Login Credentials"
+	}
+}

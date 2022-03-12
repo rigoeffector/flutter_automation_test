@@ -1,0 +1,315 @@
+{
+	"success": true,
+	"message": "Login successful",
+	"user": {
+		"id": 10,
+		"member_number": null,
+		"name": "Chris",
+		"surname": "Nyandoro",
+		"dob": "1993-10-03",
+		"email": "chris@velocityhealth.co.za",
+		"msisdn": "0712103865",
+		"weight": "60",
+		"height": "171",
+		"bmi": "20.5",
+		"profile": "\/storage\/uploads\/profile\/VAFkLnfkLYC96ooCAX7Y31eKcd74jCaI5hX6zcFl.jpeg",
+		"gender_id": "1",
+		"points": "25",
+		"address_line_1": "7880 Cold Comfort,",
+		"address_line_2": "Tynwald",
+		"company_id": "1",
+		"country": null,
+		"city": null,
+		"status": "2",
+		"created_at": "2021-04-24T17:45:26.000000Z",
+		"updated_at": "2022-02-15T06:40:40.000000Z",
+		"scheduled_appointments": [
+			{
+				"id": 37,
+				"user_id": "10",
+				"counselling_schedule_id": "55",
+				"counselling_category_id": "15",
+				"admin_id": null,
+				"counsellor_id": null,
+				"platform_id": "2",
+				"counselling_venue_id": null,
+				"link": null,
+				"time": "12:00:00",
+				"date": "2022-02-09",
+				"notes": null,
+				"status": "0",
+				"deleted_at": null,
+				"created_at": null,
+				"updated_at": null,
+				"request": null,
+				"category": {
+					"id": 15,
+					"title": "Mental Health",
+					"active": "1",
+					"created_at": null,
+					"updated_at": null
+				},
+				"platform": {
+					"id": 2,
+					"name": "Call",
+					"address": "Toll Free Call",
+					"notes": "Counselling Session over call",
+					"created_at": "2022-02-15T05:18:43.000000Z",
+					"updated_at": null
+				}
+			}
+		],
+		"mood": [
+			{
+				"id": 1,
+				"note": "Listening to music",
+				"datetime": "2020-03-08 12:43:00",
+				"sentiment": {
+					"id": 2,
+					"identifier": "happy",
+					"title": "happy",
+					"icon": "assets\/icons\/happy.png"
+				},
+				"activities": [
+					{
+						"id": 2,
+						"title": "walk",
+						"icon": "assets\/icons\/md\/walk.png"
+					},
+					{
+						"id": 3,
+						"title": "drink water",
+						"icon": "assets\/icons\/md\/drinking.png"
+					},
+					{
+						"id": 6,
+						"title": "date",
+						"icon": "assets\/icons\/md\/date_time.png"
+					}
+				]
+			},
+			{
+				"id": 3,
+				"note": "Lying in bed.",
+				"datetime": "2022-02-19 21:00:00",
+				"sentiment": {
+					"id": 2,
+					"identifier": "happy",
+					"title": "happy",
+					"icon": "assets\/icons\/happy.png"
+				},
+				"activities": [
+					{
+						"id": 3,
+						"title": "drink water",
+						"icon": "assets\/icons\/md\/drinking.png"
+					},
+					{
+						"id": 5,
+						"title": "friends",
+						"icon": "assets\/icons\/md\/friends.png"
+					}
+				]
+			},
+			{
+				"id": 4,
+				"note": "Lying in bed.",
+				"datetime": "2022-02-19 21:00:00",
+				"sentiment": {
+					"id": 2,
+					"identifier": "happy",
+					"title": "happy",
+					"icon": "assets\/icons\/happy.png"
+				},
+				"activities": [
+					{
+						"id": 3,
+						"title": "drink water",
+						"icon": "assets\/icons\/md\/drinking.png"
+					},
+					{
+						"id": 5,
+						"title": "friends",
+						"icon": "assets\/icons\/md\/friends.png"
+					}
+				]
+			},
+			{
+				"id": 5,
+				"note": "Family time",
+				"datetime": "2022-02-19 21:12:00",
+				"sentiment": {
+					"id": 1,
+					"identifier": "awesome",
+					"title": "awesome",
+					"icon": "assets\/icons\/amazing.png"
+				},
+				"activities": [
+					{
+						"id": 4,
+						"title": "family",
+						"icon": "assets\/icons\/md\/family.png"
+					},
+					{
+						"id": 5,
+						"title": "friends",
+						"icon": "assets\/icons\/md\/friends.png"
+					}
+				]
+			},
+			{
+				"id": 6,
+				"note": "Family time.",
+				"datetime": "2022-02-17 09:00:00",
+				"sentiment": {
+					"id": 1,
+					"identifier": "awesome",
+					"title": "awesome",
+					"icon": "assets\/icons\/amazing.png"
+				},
+				"activities": [
+					{
+						"id": 4,
+						"title": "family",
+						"icon": "assets\/icons\/md\/family.png"
+					},
+					{
+						"id": 5,
+						"title": "friends",
+						"icon": "assets\/icons\/md\/friends.png"
+					}
+				]
+			},
+			{
+				"id": 7,
+				"note": "Family time.",
+				"datetime": "2022-02-17 09:00:00",
+				"sentiment": {
+					"id": 1,
+					"identifier": "awesome",
+					"title": "awesome",
+					"icon": "assets\/icons\/amazing.png"
+				},
+				"activities": [
+					{
+						"id": 4,
+						"title": "family",
+						"icon": "assets\/icons\/md\/family.png"
+					},
+					{
+						"id": 5,
+						"title": "friends",
+						"icon": "assets\/icons\/md\/friends.png"
+					}
+				]
+			},
+			{
+				"id": 8,
+				"note": "Family time.",
+				"datetime": "2022-02-17 09:00:00",
+				"sentiment": {
+					"id": 1,
+					"identifier": "awesome",
+					"title": "awesome",
+					"icon": "assets\/icons\/amazing.png"
+				},
+				"activities": [
+					{
+						"id": 4,
+						"title": "family",
+						"icon": "assets\/icons\/md\/family.png"
+					},
+					{
+						"id": 5,
+						"title": "friends",
+						"icon": "assets\/icons\/md\/friends.png"
+					}
+				]
+			},
+			{
+				"id": 9,
+				"note": "Notes are eak",
+				"datetime": "2022-02-19 21:15:00",
+				"sentiment": {
+					"id": 2,
+					"identifier": "happy",
+					"title": "happy",
+					"icon": "assets\/icons\/happy.png"
+				},
+				"activities": [
+					{
+						"id": 3,
+						"title": "drink water",
+						"icon": "assets\/icons\/md\/drinking.png"
+					}
+				]
+			},
+			{
+				"id": 10,
+				"note": "Test data",
+				"datetime": "2022-02-19 23:00:00",
+				"sentiment": {
+					"id": 3,
+					"identifier": "meh",
+					"title": "not sure!",
+					"icon": "assets\/icons\/meh.png"
+				},
+				"activities": [
+					{
+						"id": 21,
+						"title": "cleaning",
+						"icon": "assets\/icons\/md\/janitor.png"
+					},
+					{
+						"id": 22,
+						"title": "laundry",
+						"icon": "assets\/icons\/md\/washing_machine.png"
+					}
+				]
+			}
+		],
+		"hra": [
+			{
+				"id": 29,
+				"user_id": "10",
+				"details": "[{\"q1\":\"4\",\"q2\":\"4\",\"q3\":\"3\",\"q4\":\"3\",\"q5\":\"4\"},{\"q6\":\"5\",\"q7\":\"3\",\"q8\":\"4\",\"q9\":\"4\",\"q10\":\"4\"},{\"q11\":\"5\",\"q12\":\"3\",\"q13\":\"5\",\"q14\":\"4\",\"q15\":\"5\"},{\"q16\":\"4\",\"q17\":\"3\",\"q18\":\"4\",\"q19\":\"3\",\"q20\":\"3\"},{\"q21\":\"4\",\"q22\":\"5\",\"q23\":\"4\",\"q24\":\"5\",\"q25\":\"4\"},{\"q26\":\"4\",\"q27\":\"4\",\"q28\":\"5\",\"q29\":\"5\",\"q30\":\"5\"},{\"q31\":\"5\",\"q32\":\"4\",\"q33\":\"5\",\"q34\":\"4\",\"q35\":\"5\"},{\"q36\":\"5\",\"q37\":\"5\",\"q38\":\"4\",\"q39\":\"5\",\"q40\":\"4\"},{\"q41\":\"5\",\"q42\":\"4\",\"q43\":\"4\",\"q44\":\"5\",\"q45\":\"4\"},{\"q46\":\"4\",\"q47\":\"5\",\"q48\":\"5\",\"q49\":\"4\",\"q50\":\"4\"}]",
+				"score": "212",
+				"comment": "Healthy",
+				"created_at": "2021-07-16T12:29:28.000000Z",
+				"updated_at": "2021-07-16T12:29:28.000000Z"
+			},
+			{
+				"id": 30,
+				"user_id": "10",
+				"details": "[{\"q1\":\"4\",\"q2\":\"3\",\"q3\":\"3\",\"q4\":\"3\",\"q5\":\"5\"},{\"q6\":\"4\",\"q7\":\"4\",\"q8\":\"4\",\"q9\":\"4\",\"q10\":\"3\"},{\"q11\":\"4\",\"q12\":\"4\",\"q13\":\"4\",\"q14\":\"4\",\"q15\":\"3\"},{\"q16\":\"4\",\"q17\":\"4\",\"q18\":\"2\",\"q19\":\"4\",\"q20\":\"4\"},{\"q21\":\"5\",\"q22\":\"4\",\"q23\":\"4\",\"q24\":\"3\",\"q25\":\"5\"},{\"q26\":\"5\",\"q27\":\"5\",\"q28\":\"3\",\"q29\":\"3\",\"q30\":\"1\"},{\"q31\":\"4\",\"q32\":\"4\",\"q33\":\"4\",\"q34\":\"2\",\"q35\":\"4\"},{\"q36\":\"4\",\"q37\":\"4\",\"q38\":\"3\",\"q39\":\"4\",\"q40\":\"4\"},{\"q41\":\"5\",\"q42\":\"4\",\"q43\":\"4\",\"q44\":\"4\",\"q45\":\"3\"},{\"q46\":\"5\",\"q47\":\"4\",\"q48\":\"4\",\"q49\":\"4\",\"q50\":\"4\"}]",
+				"score": "190",
+				"comment": "Moderate Healthy",
+				"created_at": "2021-07-20T07:19:24.000000Z",
+				"updated_at": "2021-07-20T07:19:24.000000Z"
+			},
+			{
+				"id": 33,
+				"user_id": "10",
+				"details": "[{\"q1\":\"4\",\"q2\":\"3\",\"q3\":\"2\",\"q4\":\"4\",\"q5\":\"3\"},{\"q6\":\"3\",\"q7\":\"2\",\"q8\":\"4\",\"q9\":\"3\",\"q10\":\"4\"},{\"q11\":\"4\",\"q12\":\"3\",\"q13\":\"4\",\"q14\":\"3\",\"q15\":\"3\"},{\"q16\":\"4\",\"q17\":\"3\",\"q18\":\"3\",\"q19\":\"2\",\"q20\":\"3\"},{\"q21\":\"4\",\"q22\":\"3\",\"q23\":\"2\",\"q24\":\"2\",\"q25\":\"4\"},{\"q26\":\"4\",\"q27\":\"3\",\"q28\":\"4\",\"q29\":\"3\",\"q30\":\"3\"},{\"q31\":\"5\",\"q32\":\"1\",\"q33\":\"1\",\"q34\":\"2\",\"q35\":\"3\"},{\"q36\":\"3\",\"q37\":\"3\",\"q38\":\"3\",\"q39\":\"3\",\"q40\":\"3\"},{\"q41\":\"4\",\"q42\":\"3\",\"q43\":\"3\",\"q44\":\"4\",\"q45\":\"3\"},{\"q46\":\"3\",\"q47\":\"4\",\"q48\":\"3\",\"q49\":\"3\",\"q50\":\"4\"}]",
+				"score": "157",
+				"comment": "Moderate Healthy",
+				"created_at": "2022-02-04T22:03:20.000000Z",
+				"updated_at": "2022-02-04T22:03:20.000000Z"
+			}
+		],
+		"appointment_requests": [],
+		"company": {
+			"id": 1,
+			"name": "Velocity Wellness",
+			"email": "admin@velocityhealth.co.za",
+			"msisdn": null,
+			"logo": "\/storage\/uploads\/clients\/qBbykHuzNiUrxYbZCPNg02dlF8cQQmpVl1h5Du5a.jpeg",
+			"code": "12021",
+			"status": "1",
+			"deleted_at": null,
+			"created_at": "2021-01-25T04:57:33.000000Z",
+			"updated_at": "2021-09-07T15:04:46.000000Z"
+		}
+	},
+	"token": "579|KTt3aWKtizhwtTUKF2dLIZwpjqLqGfGkbXutupge"
+}
