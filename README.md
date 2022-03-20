@@ -15,3 +15,13 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 # flutter_automation_test
+
+
+## go to pubspec.yaml
+
+  add these dependencies
+   - shared_preferences: ^2.0.13
+   - integration_test: any
+
+## go to terminal
+ - write flutter pub get 
