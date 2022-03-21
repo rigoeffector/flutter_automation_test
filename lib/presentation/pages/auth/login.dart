@@ -352,13 +352,12 @@ class _LoginState extends State<Login> {
 
     final sharedPemail = await _prefs.getString('email');
     final sharedPpwd = await _prefs.getString('password');
-    Navigator.of(context).pushNamed('/home');
-    // if (emailController.text == sharedPemail.toString() &&
-    //     pwdController.text == sharedPpwd.toString()) {
-    //   print(" working");
-    //   Navigator.of(context).pushNamed('/home');
-    // } else {
-    //   print("not working");
-    // }
+    if (emailController.text == sharedPemail.toString() &&
+        pwdController.text == sharedPpwd.toString()) {
+      print(" working");
+      Navigator.of(context).pushNamed('/home');
+    } else {
+      print("not working");
+    }
   }
 }
