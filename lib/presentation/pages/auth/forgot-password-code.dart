@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfirmForgotPasswordCode extends StatefulWidget {
   const ConfirmForgotPasswordCode({Key key}) : super(key: key);
@@ -47,17 +48,17 @@ class _ConfirmForgotPasswordCodeState extends State<ConfirmForgotPasswordCode> {
                     Image(image: AssetImage('assets/icons/registration.png'))),
             Column(
               children: [
-                Container(
-                    margin: const EdgeInsets.all(20)
-                        .add(EdgeInsets.only(top: height * 0.25)),
-                    alignment: Alignment.center,
-                    child: const Center(
-                      child: ImageIcon(
-                        AssetImage('assets/icons/password_200px.png'),
-                        size: 120,
-                        color: Colors.white,
-                      ),
-                    )),
+                // Container(
+                //     margin: const EdgeInsets.all(20)
+                //         .add(EdgeInsets.only(top: height * 0.25)),
+                //     alignment: Alignment.center,
+                //     child: const Center(
+                //       child: ImageIcon(
+                //         AssetImage('assets/icons/password_200px.png'),
+                //         size: 120,
+                //         color: Colors.white,
+                //       ),
+                //     )),
                 const Text(
                   'Check your email',
                   style: TextStyle(
@@ -89,6 +90,7 @@ class _ConfirmForgotPasswordCodeState extends State<ConfirmForgotPasswordCode> {
                               padding:
                                   const EdgeInsets.only(left: 20.0, right: 40),
                               child: TextFormField(
+                                key: Key('code'),
                                 style: const TextStyle(
                                     color: Colors.white, fontFamily: 'UniNeue'),
                                 validator: (val) {
@@ -128,7 +130,7 @@ class _ConfirmForgotPasswordCodeState extends State<ConfirmForgotPasswordCode> {
                                             BorderRadius.circular(30)),
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context).pushNamed('/forgot-password/update-password');
+                                    _verify();
                                   },
                                   child: const Text(
                                     'Verify',
@@ -204,5 +206,12 @@ class _ConfirmForgotPasswordCodeState extends State<ConfirmForgotPasswordCode> {
         ),
       ),
     );
+  }
+
+  void _verify() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setString('code', codeController.text);
+    if (codeController.text != null)
+      Navigator.of(context).pushNamed('/forgot-password/update-password');
   }
 }

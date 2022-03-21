@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc_login/logic/blocs/auth/bloc/auth_bloc.dart';
 import 'package:bloc_login/logic/blocs/auth/bloc/auth_state.dart';
 import 'package:bloc_login/logic/helpers/validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({Key key}) : super(key: key);
@@ -23,6 +24,20 @@ class _LoginState extends State<Login> {
   bool obscureText = true;
 
   // late String device;
+  // @override
+  // void initState() async {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final keys = prefs.getKeys();
+
+  //   final prefsMap = Map<String, dynamic>();
+  //   for (String key in keys) {
+  //     prefsMap[key] = prefs.get(key);
+  //   }
+
+  //   print(prefsMap);
+  // }
 
   @override
   void dispose() {
@@ -94,6 +109,7 @@ class _LoginState extends State<Login> {
                                   padding: const EdgeInsets.only(
                                       left: 20.0, right: 40),
                                   child: TextFormField(
+                                    key: Key('email'),
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'UniNeue',
@@ -120,9 +136,7 @@ class _LoginState extends State<Login> {
                                             BorderSide(color: Colors.white70),
                                       ),
                                     ),
-                                    onChanged: (text) {
-                                      
-                                    },
+                                    onChanged: (text) {},
                                   ),
                                 ),
                                 const SizedBox(
@@ -132,6 +146,7 @@ class _LoginState extends State<Login> {
                                   padding: const EdgeInsets.only(
                                       left: 20.0, right: 40),
                                   child: TextFormField(
+                                    key: Key('password'),
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'UniNeue',
@@ -169,9 +184,7 @@ class _LoginState extends State<Login> {
                                             BorderSide(color: Colors.white70),
                                       ),
                                     ),
-                                    onChanged: (text) {
-                                      
-                                    },
+                                    onChanged: (text) {},
                                   ),
                                 ),
                                 const SizedBox(
@@ -181,38 +194,56 @@ class _LoginState extends State<Login> {
                                   padding: const EdgeInsets.only(
                                       left: 40.0, right: 40),
                                   child: ElevatedButton(
+
                                       style: ElevatedButton.styleFrom(
-                                        minimumSize: Size(
-                                            width * 0.65, height * 0.12),
+                                        minimumSize:
+                                            Size(width * 0.65, height * 0.12),
                                         side: const BorderSide(
                                             color: Colors.white, width: 1),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(30)),
                                       ),
-                                      onPressed: (state is AuthLoading)? () => {null} :  () => {
-                                                if(validateForm()){
-                                                  BlocProvider.of<
-                                                            AuthBloc>(
-                                                        context)
-                                                    .add(
-                                                        AuthLoginRequested(
-                                                            emailController
-                                                                .text,
-                                                            pwdController.text,
-                                                            "BlocLogin"))
-                                                }
-                                              },
-                                      child: (state is AuthLoading)? const SizedBox(
-                                        height: 20,
-                                        width: 20,
-                                        child: CircularProgressIndicator(color: Colors.white,)) : const Text(
-                                        'Login',
+                                      onPressed: () {
+                                        _login();
+                                      },
+                                      // ((state is AuthLoading)
+                                      // ? () => {null}
+                                      // : () => {
+                                      //       if (validateForm())
+                                      //         {
+                                      //           BlocProvider.of<AuthBloc>(
+                                      //                   context)
+                                      //               .add(AuthLoginRequested(
+                                      //                   emailController
+                                      //                       .text,
+                                      //                   pwdController.text,
+                                      //                   "BlocLogin"))
+                                      //         }
+                                      //     }),
+                                      child:
+                                      const Text(
+                                        'Sign In',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'UniNeue',
                                             fontSize: 20),
-                                      )),
+                                      )
+                                      // (state is AuthLoading)
+                                      //     ? const SizedBox(
+                                      //         height: 20,
+                                      //         width: 20,
+                                      //         child: CircularProgressIndicator(
+                                      //           color: Colors.white,
+                                      //         ))
+                                      //     : const Text(
+                                      //         'Sign In',
+                                      //         style: TextStyle(
+                                      //             color: Colors.white,
+                                      //             fontFamily: 'UniNeue',
+                                      //             fontSize: 20),
+                                      //       )
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 30,
@@ -313,5 +344,21 @@ class _LoginState extends State<Login> {
     setState(() {
       obscureText = !obscureText;
     });
+  }
+
+  void _login() async {
+
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+
+    final sharedPemail = await _prefs.getString('email');
+    final sharedPpwd = await _prefs.getString('password');
+    Navigator.of(context).pushNamed('/home');
+    // if (emailController.text == sharedPemail.toString() &&
+    //     pwdController.text == sharedPpwd.toString()) {
+    //   print(" working");
+    //   Navigator.of(context).pushNamed('/home');
+    // } else {
+    //   print("not working");
+    // }
   }
 }

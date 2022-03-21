@@ -1,4 +1,8 @@
+import 'package:bloc_login/presentation/pages/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../router/app_routes.dart';
 
 class RegisterPublic extends StatefulWidget {
   const RegisterPublic({Key key}) : super(key: key);
@@ -16,7 +20,6 @@ class _RegisterPublicState extends State<RegisterPublic> {
   TextEditingController cpwdController = TextEditingController();
   bool obscureText1 = true;
   bool obscureText = true;
-
   @override
   void dispose() {
     otpController.dispose();
@@ -78,6 +81,7 @@ class _RegisterPublicState extends State<RegisterPublic> {
                               padding:
                                   const EdgeInsets.only(left: 20.0, right: 40),
                               child: TextFormField(
+                                key: Key('emailUser'),
                                 style: const TextStyle(
                                     color: Colors.white, fontFamily: 'UniNeue'),
                                 validator: (val) {},
@@ -110,6 +114,7 @@ class _RegisterPublicState extends State<RegisterPublic> {
                               padding: const EdgeInsets.only(
                                   top: 40, left: 20.0, right: 40),
                               child: TextFormField(
+                                key: Key('pwdUser'),
                                 style: const TextStyle(
                                     color: Colors.white, fontFamily: 'UniNeue'),
                                 validator: (val) {},
@@ -153,6 +158,8 @@ class _RegisterPublicState extends State<RegisterPublic> {
                               padding: const EdgeInsets.only(
                                   top: 40, left: 20.0, right: 40),
                               child: TextFormField(
+                                key: Key('cpwdUser'),
+
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'UniNeue',
@@ -208,7 +215,7 @@ class _RegisterPublicState extends State<RegisterPublic> {
                                             BorderRadius.circular(30)),
                                   ),
                                   onPressed: () {
-                                    //submit
+                                    _submit();
                                   },
                                   child: const Text(
                                     'Submit',
@@ -415,5 +422,16 @@ class _RegisterPublicState extends State<RegisterPublic> {
     setState(() {
       obscureText1 = !obscureText1;
     });
+  }
+
+  void _submit() async {
+    final String confirm_password = cpwdController.text;
+    final String password = pwdController.text;
+    final String email = emailController.text;
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setString('email', email);
+    _prefs.setString('password', password);
+    _prefs.setString('cPassword', confirm_password);
+    Navigator.of(context).pushNamed('/login');
   }
 }

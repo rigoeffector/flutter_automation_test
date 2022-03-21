@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ForgotPasswordChange extends StatefulWidget {
   const ForgotPasswordChange({Key key}) : super(key: key);
@@ -117,6 +118,7 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 40),
                       child: TextFormField(
+                        key: Key('newpwd'),
                         style: const TextStyle(
                             color: Color(0xFF0093CD), fontFamily: 'UniNeue'),
                         validator: (val) {
@@ -156,6 +158,7 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                       padding:
                           const EdgeInsets.only(left: 20.0, right: 40, top: 50),
                       child: TextFormField(
+                        key: Key('cnewpwd'),
                         style: const TextStyle(
                             color: Color(0xFF0093CD), fontFamily: 'UniNeue'),
                         validator: (val) {
@@ -202,7 +205,7 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                                 borderRadius: BorderRadius.circular(30)),
                           ),
                           onPressed: () {
-                            //submit
+                            _submit();
                           },
                           child: const Text(
                             'Reset Password',
@@ -231,5 +234,18 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
     setState(() {
       obscureText2 = !obscureText2;
     });
+  }
+
+  void _submit() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setString('newPwd', pwdController.text);
+    _prefs.setString('cnewPwd', cpwdController.text);
+    if (pwdController.text != null && cpwdController.text != null) {
+      await _prefs.remove('password');
+      await _prefs.remove('cPassword');
+      await _prefs.setString('password', pwdController.text);
+      await _prefs.setString('cPassword', cpwdController.text);
+    }
+    Navigator.of(context).pushNamed('/login');
   }
 }

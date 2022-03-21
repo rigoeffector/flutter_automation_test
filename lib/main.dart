@@ -6,16 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc_login/logic/blocs/auth/bloc/auth_bloc.dart';
 import 'package:bloc_login/logic/blocs/auth/bloc/auth_state.dart';
 import 'package:bloc_login/presentation/router/app_routes.dart';
-
+import 'package:flutter_driver/driver_extension.dart';
 import 'data/repositories/authentication_repository/authentication_repository.dart';
 
 void main() async {
+  enableFlutterDriverExtension();
   WidgetsFlutterBinding.ensureInitialized();
   final storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
         : await getTemporaryDirectory(),
   );
+
   HydratedBlocOverrides.runZoned(
     () => runApp(App(
       authenticationRepository: AuthenticationRepository(),
@@ -83,6 +85,7 @@ class BlocApp extends StatelessWidget {
                 if (state is AuthGranted) {
                   _navigator.pushNamedAndRemoveUntil("/home", (route) => false);
                 } else if (state is AuthInitial) {
+                  // _navigator.pushNamedAndRemoveUntil("/home", (route) => false);
                   _navigator.pushNamedAndRemoveUntil("/", (route) => false);
                 }
               },

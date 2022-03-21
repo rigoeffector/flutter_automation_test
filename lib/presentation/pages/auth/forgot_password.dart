@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key key}) : super(key: key);
@@ -46,17 +47,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     Image(image: AssetImage('assets/icons/registration.png'))),
             Column(
               children: [
-                Container(
-                    margin: const EdgeInsets.all(10)
-                        .add(EdgeInsets.only(top: height * 0.2)),
-                    alignment: Alignment.center,
-                    child: const Center(
-                      child: ImageIcon(
-                        AssetImage('assets/icons/lock_240px.png'),
-                        size: 120,
-                        color: Colors.white,
-                      ),
-                    )),
+                // Container(
+                //     margin: const EdgeInsets.all(10)
+                //         .add(EdgeInsets.only(top: height * 0.2)),
+                //     alignment: Alignment.center,
+                //     child: const Center(
+                //       child: ImageIcon(
+                //         AssetImage('assets/icons/lock_240px.png'),
+                //         size: 120,
+                //         color: Colors.white,
+                //       ),
+                //     )),
                 const Text(
                   'Find your Velocity Account',
                   style: TextStyle(
@@ -88,6 +89,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               padding:
                                   const EdgeInsets.only(left: 20.0, right: 40),
                               child: TextFormField(
+                                key: Key('emailVaccount'),
                                 style: const TextStyle(
                                     color: Colors.white, fontFamily: 'UniNeue'),
                                 validator: (val) {
@@ -132,7 +134,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                             BorderRadius.circular(30)),
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context).pushNamed('/forgot-password/confirm');
+                                    _forgot_password();
+                                    Navigator.of(context)
+                                        .pushNamed('/forgot-password/confirm');
                                   },
                                   child: const Text(
                                     'Search',
@@ -172,5 +176,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         ),
       ),
     );
+  }
+
+  void _forgot_password() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    if (emailController.text != null &&
+        emailController.text == _prefs.getString('email'))
+      Navigator.of(context).pushNamed('/forgot-password/confirm');
   }
 }
